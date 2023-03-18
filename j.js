@@ -16,7 +16,9 @@ const toes = [
     "Twisty",
     "Sexy",
     "Yummy",
-    "Cummy"
+    "Cummy",
+    "Cum Shot"
+    
     
   ];
   
