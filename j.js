@@ -1,30 +1,34 @@
-const toes = [
-    "Biggy",
-    "Wiggly",
-    "Squiggly",
-    "Smally",
-    "Curly",
-    "Funky",
-    "Silly",
-    "Gummy",
-    "Scrunchy",
-    "Stinky",
-    "Snuggly",
-    "Snappy",
-    "Bumpy",
-    "Floppy",
-    "Twisty",
-    "Sexy",
-    "Yummy",
-    "Cummy",
-    "Cum Shot"
-    
-    
-  ];
-  
-  function generateToesName() {
-    const index = Math.floor(Math.random() * toes.length);
-    const toeName = toes[index];
-    document.getElementById("toe-name").innerText = toeName;
+var board = [
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""]
+];
+
+var currentPlayer = "X";
+
+function makeMove(row, col) {
+  if (board[row][col] === "") {
+    board[row][col] = currentPlayer;
+    document.getElementsByClassName("cell")[row * 3 + col].innerHTML = currentPlayer;
+    currentPlayer = (currentPlayer === "X") ? "O" : "X";
   }
-  
+
+  checkWinner();
+}
+
+function checkWinner() {
+  var winningCombinations = [
+    [[0, 0], [0, 1], [0, 2]], // Rows
+    [[1, 0], [1, 1], [1, 2]],
+    [[2, 0], [2, 1], [2, 2]],
+    [[0, 0], [1, 0], [2, 0]], // Columns
+    [[0, 1], [1, 1], [2, 1]],
+    [[0, 2], [1, 2], [2, 2]],
+    [[0, 0], [1, 1], [2, 2]], // Diagonals
+    [[0, 2], [1, 1], [2, 0]]
+  ];
+
+  for (var i = 0; i < winningCombinations.length; i++) {
+    var combo = winningCombinations[i];
+    var a = combo[0];
+    var b
